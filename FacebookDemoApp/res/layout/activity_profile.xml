@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".MainActivity" >
+
+    <app.helper.RoundedImageView
+        android:id="@+id/ivProfileImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/profile" />
+
+    <TextView
+        android:id="@+id/tvHName"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/ivProfileImage"
+        android:layout_marginTop="10dp"
+        android:text="@string/name" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/ivProfileImage"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvHName"
+        android:text="@string/name" />
+
+    <TextView
+        android:id="@+id/tvHEmail"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvHName"
+        android:layout_marginTop="10dp"
+        android:text="@string/email" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvHName"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvHEmail"
+        android:text="@string/email" />
+
+    <TextView
+        android:id="@+id/tvHDob"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvHEmail"
+        android:layout_marginTop="10dp"
+        android:text="@string/dob" />
+
+    <TextView
+        android:id="@+id/tvDob"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvHEmail"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvHDob"
+        android:text="Not Define" />
+
+    <TextView
+        android:id="@+id/tvHGender"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvHDob"
+        android:layout_marginTop="10dp"
+        android:text="@string/gender" />
+
+    <TextView
+        android:id="@+id/tvGender"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvHDob"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvHGender"
+        android:text="Not Define" />
+
+    <TextView
+        android:id="@+id/tvHAddress"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvHGender"
+        android:layout_marginTop="10dp"
+        android:text="@string/address" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvHGender"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvHAddress"
+        android:text="Not Define" />
+
+     <TextView
+        android:id="@+id/tvHBio"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvHAddress"
+        android:layout_marginTop="10dp"
+        android:text="@string/bio" />
+
+    <TextView
+        android:id="@+id/tvBio"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvHAddress"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvHBio"
+        android:text="Not Define" />
+    
+    
+    
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Logout" />
+
+</RelativeLayout>
