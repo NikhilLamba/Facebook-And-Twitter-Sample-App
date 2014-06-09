@@ -10,7 +10,6 @@ import app.fb.utils.Logger;
 /**
  * The feed to be published on the wall
  * 
- * @author sromku
  * @see https://developers.facebook.com/docs/reference/dialogs/feed/
  */
 public class Feed

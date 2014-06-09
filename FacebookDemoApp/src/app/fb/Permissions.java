@@ -5,7 +5,6 @@ import com.facebook.internal.SessionAuthorizationType;
 /**
  * https://developers.facebook.com/docs/howtos/androidsdk/3.0/native-login/
  * 
- * @author sromku
  */
 public enum Permissions
 {

@@ -7,8 +7,6 @@ import android.os.Bundle;
 /**
  * Open graph story
  * 
- * @author sromku
- * @see http://ogp.me/
  */
 public class Story
 {

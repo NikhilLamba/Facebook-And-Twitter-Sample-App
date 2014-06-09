@@ -6,7 +6,7 @@ import java.util.List;
 import com.facebook.SessionDefaultAudience;
 import com.facebook.SessionLoginBehavior;
 
-public class SimpleFacebookConfiguration
+public class FacebookControllerConfiguration
 {
 	private String mAppId;
 	private String mNamespace;
@@ -16,7 +16,7 @@ public class SimpleFacebookConfiguration
 	private SessionLoginBehavior mLoginBehavior = null;
 	private boolean mHasPublishPermissions = false;
 
-	private SimpleFacebookConfiguration(Builder builder)
+	private FacebookControllerConfiguration(Builder builder)
 	{
 		this.mAppId = builder.mAppId;
 		this.mNamespace = builder.mNamespace;
@@ -188,9 +188,9 @@ public class SimpleFacebookConfiguration
 		 * 
 		 * @return
 		 */
-		public SimpleFacebookConfiguration build()
+		public FacebookControllerConfiguration build()
 		{
-			return new SimpleFacebookConfiguration(this);
+			return new FacebookControllerConfiguration(this);
 		}
 
 	}

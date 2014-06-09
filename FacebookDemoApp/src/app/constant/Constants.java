@@ -12,4 +12,8 @@ public class Constants {
 		Permissions.USER_ABOUT_ME, Permissions.USER_BIRTHDAY,
 		Permissions.USER_LOCATION, Permissions.EMAIL,
 		Permissions.PUBLISH_ACTION };
+	
+	
+	public static final String TWITTER_CONSUMER_KEY="EetLh6BOWF2EUchQWCilw";
+	public static final String TWITTER_CONSUMER_SECRET="bBhdHjq89WsEkxQNf7Voe4SULbXjpyOG3RsVaw4Go";
 }

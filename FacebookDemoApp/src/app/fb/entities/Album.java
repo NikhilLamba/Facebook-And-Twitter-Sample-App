@@ -5,9 +5,8 @@ import org.json.JSONObject;
 import com.facebook.model.GraphObject;
 
 /**
- * Album entity
+ * Data For Album
  * 
- * @author sromku
  * @see https://developers.facebook.com/docs/reference/api/album/
  */
 public class Album

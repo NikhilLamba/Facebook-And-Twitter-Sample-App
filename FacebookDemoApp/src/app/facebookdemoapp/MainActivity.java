@@ -2,8 +2,11 @@ package app.facebookdemoapp;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 import org.json.JSONObject;
+
+import twitter4j.User;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -12,6 +15,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -20,18 +24,23 @@ import android.view.View.OnClickListener;
 import android.widget.Toast;
 import app.bean.UserProfileBean;
 import app.constant.Constants;
-import app.fb.SimpleFacebook;
-import app.fb.SimpleFacebookConfiguration;
-import app.fb.SimpleFacebook.OnLoginListener;
-import app.fb.SimpleFacebook.OnProfileRequestListener;
+import app.fb.FacebookController;
+import app.fb.FacebookController.OnLoginListener;
+import app.fb.FacebookController.OnProfileRequestListener;
+import app.fb.FacebookControllerConfiguration;
 import app.fb.entities.Profile;
+import app.twitter.ShareOnTwitterTrophy;
+import app.twitter.TwitterApp;
+import app.twitter.TwitterApp.TwDialogListener;
+import app.twitter.TwitterSession;
 
 import com.facebook.Session;
 import com.facebook.model.GraphUser;
 
 public class MainActivity extends Activity {
 	private ProgressDialog mProgressDialog;
-	private SimpleFacebook mSimpleFacebook;
+	private FacebookController mFacebookController;
+	private TwitterApp mTwitterApp;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,15 +48,30 @@ public class MainActivity extends Activity {
 		mProgressDialog=new ProgressDialog(MainActivity.this);
 		mProgressDialog.setMessage("Please Wait...");
 		handleFacebook();
-		findViewById(R.id.btnFacebookLogin).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				onFacebookClick();
-			}
-		});
+
+
+
+
+		findViewById(R.id.btnTwitterLogin).setOnClickListener(twitterLoginClickListener);
+		findViewById(R.id.btnFacebookLogin).setOnClickListener(facebookLoginClickListener);
 		printHashKey();
 	}
 
+
+	private OnClickListener facebookLoginClickListener=new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			onFacebookClick();
+		}
+	};
+
+
+	private OnClickListener twitterLoginClickListener=new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			loginTwitter();
+		}
+	};
 
 	/**
 	 * Show the facebook keyhash
@@ -74,26 +98,26 @@ public class MainActivity extends Activity {
 	 * Handle for the Facebook button login
 	 */
 	private void onFacebookClick() {
-		if (mSimpleFacebook != null) {
+		if (mFacebookController != null) {
 			disableUserInteraction();
-			mSimpleFacebook.login(mOnLoginListener);
+			mFacebookController.login(mOnLoginListener);
 		}
 
 	}
 	@Override
 	public void onResume() {
-		mSimpleFacebook = SimpleFacebook.getInstance(MainActivity.this);
+		mFacebookController = FacebookController.getInstance(MainActivity.this);
 		super.onResume();
 	}
 	/**
 	 * Set the facebook configuration
 	 */
 	private void handleFacebook() {
-		SimpleFacebookConfiguration configuration = new SimpleFacebookConfiguration.Builder()
+		FacebookControllerConfiguration configuration = new FacebookControllerConfiguration.Builder()
 		.setAppId(Constants.FACEBOOK_APP_ID)
 		.setNamespace(Constants.FACEBOOK_NAMESPACE)
 		.setPermissions(Constants.PERMISSIONS).build();
-		SimpleFacebook.setConfiguration(configuration);
+		FacebookController.setConfiguration(configuration);
 	}
 	/**
 	 * Handle the Facebook Callbacks
@@ -114,7 +138,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Listener for after the Facebook Login
 	 */
-	private OnLoginListener mOnLoginListener = new SimpleFacebook.OnLoginListener() {
+	private OnLoginListener mOnLoginListener = new FacebookController.OnLoginListener() {
 
 		@Override
 		public void onFail(String reason) {
@@ -137,7 +161,7 @@ public class MainActivity extends Activity {
 		@Override
 		public void onLogin() {
 			// change the state of the button or do whatever you want
-			mSimpleFacebook.getProfile(mOnProfileRequestAdapter);
+			mFacebookController.getProfile(mOnProfileRequestAdapter);
 
 		}
 
@@ -244,4 +268,40 @@ public class MainActivity extends Activity {
 		}
 	}
 
+
+
+
+	/**
+	 * Method for login in twitter
+	 */
+	private void loginTwitter() {
+		mTwitterApp = new TwitterApp(MainActivity.this, Constants.TWITTER_CONSUMER_KEY, Constants.TWITTER_CONSUMER_SECRET);
+		mTwitterApp.setListener(mTwLoginDialogListener);
+		mTwitterApp.authorize(1);
+	}
+
+
+	private final TwDialogListener mTwLoginDialogListener = new TwDialogListener() {
+		@Override
+		public void onComplete(final String value) {
+			fetchTwitterData();
+		}
+		@Override
+		public void onError(final String value) {
+		}
+	};
+
+	private void fetchTwitterData() {
+		UserProfileBean mUserProfileBean=new UserProfileBean();
+		User mUser=mTwitterApp.getUser();
+		mUserProfileBean.setName(mUser.getName());
+		mUserProfileBean.setAddress(mUser.getLocation());
+		mUserProfileBean.setBio(mUser.getStatus().getText());
+		mUserProfileBean.setImageUrl(mUser.getProfileImageURL());
+
+		Intent mIntent=new Intent(MainActivity.this,ProfileActivity.class);
+		mIntent.putExtra("profile_data", mUserProfileBean);
+		startActivity(mIntent);
+		finish();
+	}
 }

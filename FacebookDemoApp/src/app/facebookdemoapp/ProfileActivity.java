@@ -14,8 +14,8 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.bean.UserProfileBean;
-import app.fb.SimpleFacebook;
-import app.fb.SimpleFacebook.OnLogoutListener;
+import app.fb.FacebookController;
+import app.fb.FacebookController.OnLogoutListener;
 import app.helper.RoundedImageView;
 import app.imageloader.ImageLoader;
 
@@ -49,14 +49,14 @@ public class ProfileActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				disableUserInteraction();
-				SimpleFacebook.getInstance(ProfileActivity.this).logout(mOnLogoutListener);
+				FacebookController.getInstance(ProfileActivity.this).logout(mOnLogoutListener);
 			}
 		});
 	}
 
 
 
-	private OnLogoutListener mOnLogoutListener = new SimpleFacebook.OnLogoutListener() {
+	private OnLogoutListener mOnLogoutListener = new FacebookController.OnLogoutListener() {
 
 		@Override
 		public void onFail(String reason) {

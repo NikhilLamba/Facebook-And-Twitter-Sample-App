@@ -14,7 +14,6 @@ import com.facebook.model.GraphUser;
 /**
  * The facebook user
  * 
- * @author sromku
  * @see https://developers.facebook.com/docs/reference/api/user/
  */
 public class Profile

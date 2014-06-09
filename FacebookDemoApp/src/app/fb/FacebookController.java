@@ -37,8 +37,6 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.WebDialog;
 
 /**
- * Simple Facebook SDK which wraps original Facebook SDK 3.5
- * 
  * <br><br>
  * <b>Features:</b>
  * <ul>
@@ -56,28 +54,27 @@ import com.facebook.widget.WebDialog;
  * <li>No need to care for correct sequence logging with READ and PUBLISH permissions</li>
  * </ul>
  * 
- * @author sromku
  */
-public class SimpleFacebook
+public class FacebookController
 {
-	private static SimpleFacebook mInstance = null;
-	private static SimpleFacebookConfiguration mConfiguration = new SimpleFacebookConfiguration.Builder().build();
+	private static FacebookController mInstance = null;
+	private static FacebookControllerConfiguration mConfiguration = new FacebookControllerConfiguration.Builder().build();
 
 	private static Activity mActivity;
 	private SessionStatusCallback mSessionStatusCallback = null;
 
 	private WebDialog mDialog = null;
 
-	private SimpleFacebook()
+	private FacebookController()
 	{
 		mSessionStatusCallback = new SessionStatusCallback();
 	}
 
-	public static SimpleFacebook getInstance(Activity activity)
+	public static FacebookController getInstance(Activity activity)
 	{
 		if (mInstance == null)
 		{
-			mInstance = new SimpleFacebook();
+			mInstance = new FacebookController();
 		}
 
 		mActivity = activity;
@@ -89,7 +86,7 @@ public class SimpleFacebook
 	 * 
 	 * @param facebookToolsConfiguration
 	 */
-	public static void setConfiguration(SimpleFacebookConfiguration facebookToolsConfiguration)
+	public static void setConfiguration(FacebookControllerConfiguration facebookToolsConfiguration)
 	{
 		mConfiguration = facebookToolsConfiguration;
 	}
@@ -1313,18 +1310,18 @@ public class SimpleFacebook
 
 	private static void logInfo(String message)
 	{
-		Logger.logInfo(SimpleFacebook.class, message);
+		Logger.logInfo(FacebookController.class, message);
 	}
 
 	private static void logError(String error, Throwable throwable)
 	{
 		if (throwable != null)
 		{
-			Logger.logError(SimpleFacebook.class, error, throwable);
+			Logger.logError(FacebookController.class, error, throwable);
 		}
 		else
 		{
-			Logger.logError(SimpleFacebook.class, error);
+			Logger.logError(FacebookController.class, error);
 		}
 	}
 
