@@ -15,18 +15,18 @@
 
     <Button
         android:id="@+id/btnFacebookLogin"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@drawable/login_facebook" />
+        android:background="@drawable/facebook_login" />
 
     <Button
         android:id="@+id/btnTwitterLogin"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/btnFacebookLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/login_facebook" />
+        android:background="@drawable/twitter_login" />
 
 </RelativeLayout>

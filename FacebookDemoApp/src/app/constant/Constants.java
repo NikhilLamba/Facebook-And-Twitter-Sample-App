@@ -14,6 +14,6 @@ public class Constants {
 		Permissions.PUBLISH_ACTION };
 	
 	
-	public static final String TWITTER_CONSUMER_KEY="EetLh6BOWF2EUchQWCilw";
-	public static final String TWITTER_CONSUMER_SECRET="bBhdHjq89WsEkxQNf7Voe4SULbXjpyOG3RsVaw4Go";
+	public static final String TWITTER_CONSUMER_KEY="7hpFKCtGnTG1WWNLyH9AQg";
+	public static final String TWITTER_CONSUMER_SECRET="i2BKYosgs5coHCx1OkQK8WlIByEHsS5E0mFRXLbPN8";
 }
